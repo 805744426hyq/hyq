@@ -209,11 +209,11 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
         </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.3.9</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>cn.hutool</groupId>-->
+        <!--            <artifactId>hutool-all</artifactId>-->
+        <!--            <version>5.7.2</version>-->
+        <!--        </dependency>-->
         <!--数据校验-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

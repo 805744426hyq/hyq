@@ -2,7 +2,7 @@ package com.example.demo.pattern.single;
 
 /**
  * @author 黄永琦
- * @description
+ * @description https://www.runoob.com/design-pattern/singleton-pattern.html
  * @date 2021/7/8
  */
 public class SingleObject {
