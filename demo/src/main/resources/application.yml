@@ -1,0 +1,99 @@
+server:
+  port: 8080
+    #ssl:
+    #key-store: sang.p12
+    #key-alias: tomcathttps
+  #key-store-password: 123456
+  tomcat:
+    uri-encoding: utf-8
+    basedir: E:\code\temp
+    connection-timeout: 30m
+  compression:
+    enabled: true
+    min-response-size: 2048000
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      location: E:\code\myself\study\demo\temp
+      max-file-size: 10MB
+      max-request-size: 100MB
+      resolve-lazily: false
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    servlet:
+      content-type: text/html
+    suffix: .html
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    locale: zh_CN
+    time-zone: GMT+8
+    serialization:
+      # 对象为空时是否报错，默认true
+      FAIL_ON_EMPTY_BEANS: false
+    deserialization:
+      # 常用,json中含pojo不存在属性时是否失败报错,默认true
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+    mapper:
+      ACCEPT_CASE_INSENSITIVE_PROPERTIES: true #关闭大小写敏感
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    database: mysql
+  security:
+    user:
+      name: admin
+      password: true
+  cache:
+    cache-names: redisCache
+    redis:
+      time-to-live: 600000
+      use-key-prefix: false
+    type: REDIS
+
+  profiles:
+    active: dev
+jwt:
+  header: Authorization
+  # 令牌前缀
+  token-start-with: Bearer
+    #1）依赖jjwt0.9.1之后的版本对于密钥安全性要求更高(体现在secret密钥的长度要达到一定的位数)，若仍想使用安全性较低的密钥，需使用0.9.1之前的版本。
+    #（2）经排查，这问题是因为选用了HS512算法后，对安全要求更高了，原有的RSA算法私钥长度1024已经不符合要求，因此假如要使用该算法进行加密，
+    #需要重新更换秘钥长度，在生成RSA密钥对的时候，把keySize改为2048或者更高。
+  #（3）本项目的key取值是从配置文件中获取的，所以只需要把key的值(即私钥)位数变多即可：
+  # 使用Base64对该令牌进行编码
+  base64-secret: 1212121hsodhsdhasdhsaldhsalhdlsahdlsadfdsfgrehgtrhytjkiulkiulsdscqwedwqfwrf32t4etgregdsfdftewfdgnjyhtuyioufsad
+  # 令牌过期时间 此处单位/毫秒，4小时
+  token-validity-in-seconds: 14400000
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    jdbc-type-for-null: 'null'
+file:
+  path: E:\code\myself\study\upload
+checkToken:
+  url: "http://193.100.100.204:7020/user/member/checkToken"
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+user:
+  address:
+    notnull: 用户地址不能为空
+  age:
+    size: 年龄输入不正确
+  email:
+    notnull: 邮箱不能为空
+    pattern: 邮箱格式不正确
+  name:
+    size: 用户名长度介于5到10 个字符之间

@@ -1,0 +1,45 @@
+spring:
+  batch:
+    #配置表示在项目启动时执行建表SQL
+    initialize-schema: always
+    job:
+      #配置表示禁止Spring Batch 自动执行
+      enabled: false
+  datasource:
+    #项目启动时创建数据表的SQL脚本，该脚本由Spring Batch 提供
+    schema: classpath:/org/springframework/batch/core/schema-mysql.sql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/study?characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 123456
+    hikari:
+      connection-timeout: 60000
+      idle-timeout: 60000
+      login-timeout: 5
+      max-lifetime: 60000
+      maximum-pool-size: 60
+      minimum-idle: 10
+      read-only: false
+      validation-timeout: 3000
+      #配置datasource时需要配置相应的连接池参数，定时去检查连接的有效性，定时清理无效的连接。
+    dbcp2:
+      validation-query: SELECT 1
+      time-between-eviction-runs-millis: 18800
+    druid:
+      db-type: alibaba.druid.pool.DruidDataSource
+
+  redis:
+    database: 0
+    host: localhost
+    password:
+    port: 6379
+    timeout: 1200
+    jedis:
+      pool:
+        max-active: 100
+        max-idle: 10
+        max-wait: 100000ms
+        min-idle: 0
+springfox:
+  documentation:
+    enabled: true
