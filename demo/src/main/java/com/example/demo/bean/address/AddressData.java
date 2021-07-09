@@ -1,6 +1,5 @@
 package com.example.demo.bean.address;
 
-import com.example.demo.bean.Location;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
