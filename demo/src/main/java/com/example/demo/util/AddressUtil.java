@@ -19,13 +19,13 @@ import java.net.URLEncoder;
 @Component
 @Slf4j
 public class AddressUtil {
-	private static final String key = "http://api.map.baidu.com/geocoder/v2/?output=json&ak" +
+	private static final String KEY = "http://api.map.baidu.com/geocoder/v2/?output=json&ak" +
 			"=Otp3xGbcjtGR8ySbIGImm9XKGdAdHt2N&";
+	private final JsonUtil jsonUtil;
+
 	@Autowired
-	private JsonUtil jsonUtil;
-
-	private AddressUtil() {
-
+	public AddressUtil(JsonUtil jsonUtil) {
+		this.jsonUtil = jsonUtil;
 	}
 
 	private AddressData getAddInfo(StringBuilder builder) throws Exception {
@@ -50,7 +50,7 @@ public class AddressUtil {
 	 */
 	public String getAddr(Double lng, Double lat) throws Exception {
 		StringBuilder builder = new StringBuilder();
-		builder.append(key).append("location=").append(lat).append(",").append(lng);
+		builder.append(KEY).append("location=").append(lat).append(",").append(lng);
 		return getAddInfo(builder).getFormattedAddress();
 	}
 
@@ -64,7 +64,7 @@ public class AddressUtil {
 	public String getCoordinate(String addr) throws Exception {
 		String address = URLEncoder.encode(addr, CommonConstant.UTF8);
 		StringBuilder builder = new StringBuilder();
-		builder.append(key).append("address=").append(address);
+		builder.append(KEY).append("address=").append(address);
 		return getAddInfo(builder).getLocation().toString();
 
 	}
