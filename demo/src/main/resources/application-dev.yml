@@ -9,9 +9,9 @@ spring:
     #项目启动时创建数据表的SQL脚本，该脚本由Spring Batch 提供
     schema: classpath:/org/springframework/batch/core/schema-mysql.sql
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/study?characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
+    url: jdbc:mysql://localhost:3308/study?characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false
     username: root
-    password: 123456
+    password: System@2019!
     hikari:
       connection-timeout: 60000
       idle-timeout: 60000
